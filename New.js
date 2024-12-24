@@ -1,28 +1,30 @@
 function updateTimer() {
-    const now = new Date();
-    const nextYear = now.getFullYear() + 1;
-    const newYear = new Date(`January 1, ${nextYear} 00:00:00`);
-    const diff = newYear - now;
-  
-    if (diff <= 0) {
-        document.querySelector('.timer-container').innerHTML = 
-            "<h2>Основная стратегия нового года это заманить вас всех сюда!</h2>";
-        return;
-    }
-  
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  
-    document.getElementById('days').innerText = days;
-    document.getElementById('hours').innerText = hours;
-    document.getElementById('minutes').innerText = minutes;
-    document.getElementById('seconds').innerText = seconds;
+  const now = new Date();
+  const nextYear = now.getFullYear() + 1;
+  const newYear = new Date(January 1, ${nextYear} 00:00:00);
+  const diff = newYear - now;
+
+
+  if (diff <= 0) {
+      clearInterval(timerInterval); 
+      document.getElementById('countdown').innerText = "Я не знаю кто это смотрит, но с новым годом, пусть вы выживите в новом году, а я пожалуй пойду войду в транс, в ожидании нового года";
+      return;
   }
-  
-  updateTimer();
-  setInterval(updateTimer, 1000);
+
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+
+  document.getElementById('countdown').innerText = 
+      ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд;
+}
+
+// Обновление таймера каждую секунду
+const timerInterval = setInterval(updateTimer, 1000);
+updateTimer(); // Первоначальный вызов для немедленного обновления
 
 // снежинки
         function createSnowflake() {
